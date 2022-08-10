@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:task2/HomePage.dart';
 import 'package:task2/ShoppingBag.dart';
-import 'CollectionItem.dart';
-import 'ClothesItem.dart';
 import 'HomePage.dart';
 import 'ShoppingBag.dart';
+import 'package:get/get.dart';
+import 'components/localStrings.dart';
 
 void main() {
   runApp(MyApp());
@@ -89,11 +89,14 @@ class _MyHomePAgeState extends State<MyHomePAge> {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MyHomePAge());
+    return GetMaterialApp(
+      translations: LocalStrings(),
+      locale: Locale("eng"),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePAge(),
+    );
   }
 }
