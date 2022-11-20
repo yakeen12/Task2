@@ -5,23 +5,25 @@ class LocalStrings extends Translations {
   Map<String, Map<String, String>> get keys => {
         'eng': {
           "ShoppingBag": "Shopping Bag",
-          "NewArrival": "New Arrival",
+          "Products": "Products",
           "See_all": "See all",
           "Collection": "Collection",
           "Spring": "Spring",
           "fall": "fall",
           "Summer": "Summer",
-          "Winter": "Winter"
+          "Winter": "Winter",
+          "Supplier": 'Supplier',
         },
         'ar': {
           "ShoppingBag": "عربة التّسوق",
-          "NewArrival": "وصل حديثًا",
+          "Products": 'المنتجات',
           "See_all": "الكل",
-          "Collection": "تشكيلات",
+          "Category": "تصنيف",
           "fall": "خريفي",
           "Summer": "صيفي",
           "Winter": "شتوي",
           "Spring": "ربيعي",
+          'Supplier': 'المزوّد'
         },
       };
 }

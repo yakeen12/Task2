@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -14,12 +13,12 @@ class ClothesItem {
 class ClothesPage extends StatelessWidget {
   final ClothesItem item;
 
-  ClothesPage({required this.item});
+  const ClothesPage({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("ItemPage")),
+      appBar: AppBar(title: const Text("ItemPage")),
       body: Column(children: [
         AspectRatio(
           aspectRatio: 4 / 3,
@@ -60,7 +59,7 @@ Widget buildClothes({required ClothesItem item}) {
                 children: [
                   AutoSizeText(
                     item.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17,
                     ),
@@ -73,7 +72,7 @@ Widget buildClothes({required ClothesItem item}) {
             FloatingActionButton.small(
               onPressed: () {},
               backgroundColor: Colors.green[900],
-              child: Icon(Icons.favorite),
+              child: const Icon(Icons.favorite),
             )
           ])
         ],

@@ -1,10 +1,8 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task2/model/item.dart';
-import 'ClothesItem.dart';
-import 'CollectionItem.dart';
+import 'clothes_item.dart';
+import 'collection_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,7 +14,7 @@ class HomePage extends StatefulWidget {
 int langCounter = 0;
 
 class _HomePageState extends State<HomePage> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +22,21 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       drawer: Drawer(
           child: Container(
-        padding: EdgeInsets.all(44),
+        padding: const EdgeInsets.all(44),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
           FloatingActionButton.small(
             onPressed: () {
               _scaffoldKey.currentState!.closeDrawer();
             },
-            child: Icon(Icons.menu),
-            backgroundColor: Color.fromARGB(255, 134, 239, 138),
+            backgroundColor: const Color.fromARGB(255, 134, 239, 138),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: const Icon(Icons.menu),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           FloatingActionButton.small(
@@ -47,33 +45,32 @@ class _HomePageState extends State<HomePage> {
               // Else eng
               setState(() {
                 langCounter++;
-                print(langCounter);
               });
               if (langCounter % 2 == 0) {
-                var locale = Locale("eng");
+                var locale = const Locale("eng");
                 Get.updateLocale(locale);
               } else {
-                var locale = Locale("ar");
+                var locale = const Locale("ar");
                 Get.updateLocale(locale);
               }
             },
-            child: Icon(Icons.language),
-            backgroundColor: Color.fromARGB(255, 134, 239, 138),
+            backgroundColor: const Color.fromARGB(255, 134, 239, 138),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: const Icon(Icons.language),
           ),
         ]),
       )),
       body: ListView(
           padding: langCounter % 2 == 0
-              ? EdgeInsets.only(left: 24)
-              : EdgeInsets.only(right: 24),
+              ? const EdgeInsets.only(left: 24)
+              : const EdgeInsets.only(right: 24),
           children: [
             Column(
               children: [
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Container(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -81,17 +78,19 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {
                           _scaffoldKey.currentState!.openDrawer();
                         },
-                        child: Icon(Icons.menu),
-                        backgroundColor: Color.fromARGB(255, 134, 239, 138),
+                        backgroundColor:
+                            const Color.fromARGB(255, 134, 239, 138),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
+                        child: const Icon(Icons.menu),
                       ),
                       FloatingActionButton.small(
                         onPressed: () {},
-                        child: Icon(Icons.search),
-                        backgroundColor: Color.fromARGB(255, 134, 239, 138),
+                        backgroundColor:
+                            const Color.fromARGB(255, 134, 239, 138),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
+                        child: const Icon(Icons.search),
                       ),
                     ],
                   ),
@@ -100,65 +99,28 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "NewArrival".tr,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      "Category".tr,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    FlatButton(
+                    TextButton(
                       onPressed: () {},
                       child: Text(
                         "See_all".tr,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Color.fromARGB(255, 134, 239, 138),
                             fontWeight: FontWeight.bold),
                       ),
                     )
                   ],
-                ),
-                Container(
-                  height: 270,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: clothes.length,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        width: 12,
-                      );
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildClothes(item: clothes[index]);
-                    },
-                  ),
                 ),
                 SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Collection".tr,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                        "See_all".tr,
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 134, 239, 138),
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )
-                  ],
-                ),
-                Container(
                   height: 150,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: collection.length,
                     separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
+                      return const SizedBox(
                         width: 12,
                       );
                     },
@@ -169,6 +131,98 @@ class _HomePageState extends State<HomePage> {
                           imageLink: collection[index].imageLink!);
                     },
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Products".tr,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "See_all".tr,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 134, 239, 138),
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 270,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: clothes.length,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(
+                        width: 12,
+                      );
+                    },
+                    itemBuilder: (BuildContext context, int index) {
+                      return buildClothes(item: clothes[index]);
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Supplier".tr,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    const SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: CircleAvatar(
+                        radius: 48, // Image radius
+                        backgroundImage: NetworkImage(
+                            'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/nubwqp0trkipj4wugykd'),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Text('Al-Zaytoonah University'),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    const SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: CircleAvatar(
+                        radius: 48, // Image radius
+                        backgroundImage: NetworkImage(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4ZFnC_6kRqa5v_OqNpWJ6YjDH1CTZu8tRYUVk0-HGdA&s'),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Text('Israa University'),
+                  ],
                 ),
               ],
             ),
